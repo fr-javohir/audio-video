@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <div class="control">
+          <button class="btn btn-play">
+            <i id="play" class="bx bx-play"></i>
+            <span class="text">Restart with sound</span>
+          </button>
+          <button class="btn btn-volume">
+            <i id="volume" class="bx bxs-volume-mute"></i>
+          </button>
+        </div>
+      </div>
+      <div class="video-box">
+        <video src="d.mp4" type="video/mp4" class="video" autoplay></video>
+      </div>
+    </div>
+    <script>
+      const volume = document.querySelector(".btn-volume");
+      const restart = document.querySelector(".btn-play");
+      const video = document.querySelector(".video");
+      const playBtn = document.querySelector("#play");
+      const playVol = document.querySelector("#volume");
+      const text = document.querySelector(".text");
+
+      let press = true;
+
+      video.volume = 0;
+      restart.addEventListener("click", function () {
+        if (press) {
+          video.volume = 1;
+          playBtn.className = "bx bx-x times";
+          video.currentTime = 0;
+          press = false;
+        } else {
+          video.volume = 0;
+          playBtn.className = "bx bx-play";
+          press = true;
+
+        }
+        text.classList.toggle("hidden");
+        restart.classList.toggle("circle");
+        volume.classList.toggle("hidden");
+        playVol.className = "bx bxs-volume-mute";
+
+      });
+      volume.addEventListener("click", function () {
+        if (video.volume == 0) {
+          video.volume = 1;
+          playVol.className = "bx bxs-volume-full";
+        } else {
+          video.volume = 0;
+          playVol.className = "bx bxs-volume-mute";
+        }
+      });
+    </script>
+  </body>
+</html>
